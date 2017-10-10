@@ -1,5 +1,5 @@
 # lipideando
-a simple app for computing something related with lipids
+a simple shiny app for computing something related with lipids
 
 ## Prerequisites 
 
