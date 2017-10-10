@@ -1,5 +1,5 @@
 # lipideando
-a simple shiny app for computing something related with lipids
+A simple shiny app for computing concentrations and final volumes for your lipid mixtures. It facilitates the preparation of lipid vesicles or other surfactant suspensions
 
 ## Prerequisites 
 
@@ -24,4 +24,4 @@ sh deploy.sh
 
 3. Open your browser in webpage:
 
-[localhost:3838] (localhost:3838)
+[localhost:3838](http://localhost:3838)
