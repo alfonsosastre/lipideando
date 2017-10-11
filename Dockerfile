@@ -5,3 +5,6 @@ RUN R -e  'install.packages(c("data.table","DT"), repos="http://cran.us.r-projec
 
 # Install shinydashboard
 RUN R -e  'install.packages(c("shinydashboard"), repos="http://cran.us.r-project.org")'
+
+# Install support for xls files
+RUN R -e  'install.packages(c("openxlsx"), repos="http://cran.us.r-project.org")'

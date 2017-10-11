@@ -1,4 +1,5 @@
 library(shiny)
+library(openxlsx)
 
 dtLipids<-data.table(
            lipidComponent=c("DOPC","DOPS","Cholesterol (ovine)","DPPC","17:0-20:4 PI(4,5)P2"),
@@ -81,8 +82,8 @@ shinyServer(function(input, output) {
                                 value = 0)),
              column(2,textInput(inputId = "concF",label = "C. Final (uM)",
                                 value = 0)),
-             column(2,actionButton("compute","Compute")))
-    
+             column(2,actionButton("compute","Compute")),
+             column(2,downloadButton("downloadData", "Download")))
   })
   
   observeEvent(input$compute,{
@@ -103,7 +104,9 @@ shinyServer(function(input, output) {
     names(dt) <- c("Lipid Component","Volume (uL)")
     dt
   })
-  
+
+    
+      
   observeEvent(input$dbLipids,{
     inFile <- input$dbLipids
     if(is.null(inFile))
@@ -113,6 +116,14 @@ shinyServer(function(input, output) {
     names(values$dtLipids) <- c("lipidComponent","MW")
     values$dtLipids
   })  
-      
-
+    
+  output$downloadData <- downloadHandler(
+    filename = function() { "lipideando_example.xlsx" },
+    content = function(file) {
+      list_of_datasets <- list("components" = values$dtSelected, "proportions" = values$dtSolution)
+      openxlsx::write.xlsx(x=list_of_datasets, file)
+#      write.csv(values$dtSelected, file, row.names = FALSE)
+    }
+  )
+  
 })
